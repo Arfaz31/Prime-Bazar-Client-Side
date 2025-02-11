@@ -1,30 +1,21 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUser } from '@/lib/store/features/authSlice';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mock login - replace with actual authentication
-    dispatch(setUser({
-      id: '1',
-      email,
-      name: 'John Doe',
-      role: 'customer'
-    }));
-    router.push('/');
+  const handleSubmit = () => {
+    router.push("/");
   };
 
   return (
@@ -34,7 +25,6 @@ export default function LoginPage() {
           <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -45,7 +35,6 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -61,7 +50,7 @@ export default function LoginPage() {
           </form>
           <div className="mt-4 text-center">
             <p className="text-sm text-muted-foreground">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{" "}
               <Link href="/signup" className="text-primary hover:underline">
                 Sign up
               </Link>
